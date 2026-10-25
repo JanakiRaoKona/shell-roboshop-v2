@@ -2,8 +2,9 @@
 app_name=cart
 source ./comman.sh
 
-nodejs_setup
+
 app_setup app_name
+nodejs_setup
 systemd_setup app_name
 restart
 total_time
