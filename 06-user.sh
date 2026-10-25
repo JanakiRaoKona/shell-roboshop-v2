@@ -1,8 +1,8 @@
 #!/bin/bash
+app_name="user"
 
 source ./comman.sh
 
-app_name="user"
 nodejs_setup
 app_setup
 systemd_setup
