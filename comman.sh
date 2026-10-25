@@ -16,6 +16,8 @@ if [ $user_id -ne 0 ]; then
 fi
 
 }
+check_root
+
 time_stamp() {
     date +"%F %T"
 }
