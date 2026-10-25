@@ -16,14 +16,15 @@ if [ $user_id -ne 0 ]; then
 fi
 
 }
+time_stamp() {
+    date +"%F %T"
+}
 
 mkdir -p "${logs_folder}"
 
 echo "$(time_stamp) [INFO] ==== Script started execution ====" | tee -a $logs_file
 
-time_stamp() {
-    date +"%F %T"
-}
+
 
 validate () {
     
