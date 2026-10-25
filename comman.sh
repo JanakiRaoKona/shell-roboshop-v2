@@ -113,6 +113,9 @@ java_setup () {
 }
 
 python_setup () {
+    dnf install python3.14 python3.14-pip -y &>> $logs_file
+    validate $? "Installing Python 3.14"
+
     python3.14 -m venv /app/.venv &>> $logs_file
     validate $? "Creating virtual enviroment"
 
