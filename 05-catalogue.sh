@@ -6,6 +6,7 @@ nodejs_setup
 systemd_setup
 
 
+
 cp "$scripts_dir/mongo.repo" /etc/yum.repos.d/mongo.repo
 validate $? "Adding mongo repo"
 
