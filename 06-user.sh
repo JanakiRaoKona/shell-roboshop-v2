@@ -1,5 +1,5 @@
 #!/bin/bash
-app_name="user"
+app_name=user
 
 source ./comman.sh
 

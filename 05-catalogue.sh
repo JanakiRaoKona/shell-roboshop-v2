@@ -1,5 +1,5 @@
 #!/bin/bash
-app_name="catalogue"
+app_name=catalogue
 source ./comman.sh
 app_setup app_name
 nodejs_setup

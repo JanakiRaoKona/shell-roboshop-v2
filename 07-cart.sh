@@ -1,6 +1,5 @@
 #!/bin/bash
-app_name="cart"
-
+app_name=cart
 source ./comman.sh
 
 nodejs_setup
