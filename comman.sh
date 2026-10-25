@@ -112,6 +112,15 @@ java_setup () {
 
 }
 
+python_setup () {
+    python3.14 -m venv /app/.venv &>> $logs_file
+    validate $? "Creating virtual enviroment"
+
+    /app/.venv/bin/pip install -r requirements.txt &>> $logs_file
+    validate $? "Installing dependencies"
+}
+
+
 restart () {
     systemctl restart $app_name
     validate $?  "Restarting the mongodb"
