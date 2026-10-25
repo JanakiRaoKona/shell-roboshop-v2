@@ -123,6 +123,19 @@ python_setup () {
     validate $? "Installing dependencies"
 }
 
+load_shipping_data () {
+    count=$(mysql -h mysql.$domain_name -u root -pRoboShop@1 -N -B -e "SELECT COUNT(*) FROM cities.cities;" 2>> $logs_file)
+
+    if [ -z "$count" ] || [ count -eq 0 ]; then
+        mysql -h mysql.$domain_name -uroot -pRoboShop@1 < /app/db/master-data.sql
+        validate $? "Loading the shipping data"
+    else
+        echo -e "$(time_stamp) [INFO] Master DB is already loaded...${Y}SKIPPING${N}"
+    fi
+        mysql -h mysql.$domain_name -uroot -pRoboShop@1 < /app/db/app-user.sql
+        validate $? "Creating App user"
+}
+
 
 restart () {
     systemctl restart $app_name
