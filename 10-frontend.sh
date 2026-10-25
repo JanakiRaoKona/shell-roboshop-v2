@@ -1,0 +1,35 @@
+#!/bin/bash
+
+source ./comman.sh
+
+
+dnf module disable nginx -y &>> $logs_file
+dnf module enable nginx:1.26 -y &>> $logs_file
+dnf install nginx -y &>> $logs_file
+validate $? "Installing nginx"
+
+systemctl enable nginx &>> $logs_file
+systemctl start nginx &>> $logs_file
+validate $? "enable and start nginx"
+
+rm -rf /usr/share/nginx/html/*
+validate $? "Removing default nginx content"
+
+curl -L -o /tmp/frontend.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip &>> $logs_file
+cd /usr/share/nginx/html
+unzip /tmp/frontend.zip &>> $logs_file
+validate $? "Downloading and unzipping frontend code"
+
+sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/roboshop.conf"
+cp "${scripts_dir}/roboshop.conf" /etc/nginx/default.d/roboshop.conf
+validate $? "Copied roboshop config"
+
+nginx -t &>> $logs_file
+validate $? "Nginx configuration"
+
+
+systemctl restart nginx &>> $logs_file
+validate $? "Restart nginx"
+
+
+total_time

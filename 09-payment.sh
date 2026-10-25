@@ -1,5 +1,5 @@
 #!/bin/bash
-app_name=shipping
+app_name=payment
 source ./comman.sh
 
 app_setup app_name
