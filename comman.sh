@@ -7,6 +7,9 @@ N="\e[0m"
 
 logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
+domain_name=janakiraodevops.online
+scripts_dir=$(dirname "$(realpath "$0")")
+
 
 check_root () {
 
